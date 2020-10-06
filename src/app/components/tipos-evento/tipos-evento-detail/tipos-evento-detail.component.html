@@ -1,37 +1,37 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="my-3">Creación de tipo de evento</h1>
-            <form class="border border-primary p-5 bg-light">
+            <h1 class="my-3 text-white">Creación de tipo de evento</h1>
+            <form class="border border-primary p-5 bg-dark">
                 <div class="form-row">
                     <div class="form-group col mx-3">
-                        <label for="selectorDeporte">Deporte(*):</label>
+                        <label for="selectorDeporte" class="text-white">Deporte(*):</label>
                         <select class="form-control" id="selectorDeporte" [ngModelOptions]="{standalone: true}" [(ngModel)]="deporteSeleccionado">
                         <option [ngValue]="deporte" *ngFor="let deporte of listaDeportes">{{deporte.nombre}}</option>
                     </select>
                     </div>
 
                     <div class="form-group col mx-3">
-                        <label for="inputCompeticion">Competición(*):</label>
+                        <label for="inputCompeticion" class="text-white">Competición(*):</label>
                         <input id="inputCompeticion" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.competicion">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col mx-3">
-                        <label for="inputFechaInicio">Fecha y hora de inicio(*):</label>
+                        <label for="inputFechaInicio" class="text-white">Fecha y hora de inicio(*):</label>
                         <input id="inputFechaInicio" type="datetime-local" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.fechaInicio">
                     </div>
 
                     <div class="form-group col mx-3">
-                        <label for="inputFechaFin">Fecha y hora de finalización(*):</label>
+                        <label for="inputFechaFin" class="text-white">Fecha y hora de finalización(*):</label>
                         <input id="inputFechaFin" type="datetime-local" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.fechaFin">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col mx-3">
-                        <label for="inputDescripcion">Decripción:</label>
+                        <label for="inputDescripcion" class="text-white">Decripción:</label>
                         <textarea id="inputDescripcion" cols="30" rows="10" class=form-control [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.descripcion"></textarea>
                     </div>
                 </div>

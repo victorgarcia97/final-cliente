@@ -1,10 +1,11 @@
 import { Deporte } from "./deporte";
 
 export interface TipoApuesta {
-    id: number;
+    id?: number;
+    descripcion: string;
     multiplicador: number;
     riesgo: string;
     deporteId: number;
-    deporte: Deporte;
-    descripcion: string;
+    deporte?: Deporte;
+    notasExtra?: string;
 }

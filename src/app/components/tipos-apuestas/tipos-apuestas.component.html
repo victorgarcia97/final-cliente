@@ -1,26 +1,28 @@
 <div class="container">
     <div class="row my-5">
         <div class="col">
-            <h1>Listado de tipos de apuesta</h1>
+            <h1 class="text-white">Listado de tipos de apuesta</h1>
             <button type="button" class="btn btn-success float-right" [routerLink]="['/TiposApuesta/CrearTipoApuesta']">Añadir tipo de apuesta</button>
         </div>
     </div>
 
     <div class="row">
-        <div class="col table-responsive">
-            <table class="table table-hover bg-light border border-primary">
+        <div class="col table-responsive ">
+            <table class="table table-hover border table-dark border-primary">
                 <thead class="thead-dark text-primary">
                     <tr>
-                        <th class="text-primary">Deporte</th>
-                        <th class="text-primary">Competicion</th>
-                        <th class="text-primary">Fecha y hora de inicio</th>
+                        <th class="text-info font-weight-bold">Descripción</th>
+                        <th class="text-info font-weight-bold">Riesgo</th>
+                        <th class="text-info font-weight-bold">Multiplicador</th>
+                        <th class="text-info font-weight-bold">Deporte</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let tipoApuesta of listaTiposApuesta" routerLink="{{tipoApuesta.id}}/Editar">
+                        <td>{{tipoApuesta.descripcion}}</td>
+                        <td>{{tipoApuesta.riesgo}}</td>
+                        <td>{{tipoApuesta.multiplicador}}</td>
                         <td>{{tipoApuesta.deporte.nombre}}</td>
-                        <td>{{tipoApuesta.competicion}}</td>
-                        <td>{{tipoApuesta.fechaInicio|date:'medium'}}</td>
                     </tr>
                 </tbody>
             </table>

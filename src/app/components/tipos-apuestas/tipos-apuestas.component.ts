@@ -14,6 +14,7 @@ export class TiposApuestaComponent implements OnInit {
   constructor(private tipoApuestaService: TipoApuestaService) { }
 
   ngOnInit(): void {
+    this.getTiposApuestas();
   }
 
   getTiposApuestas(){
