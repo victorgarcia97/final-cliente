@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="my-3">Creación de tipo de evento</h1>
+            <form class="border border-primary p-5 bg-light">
+                <div class="form-row">
+                    <div class="form-group col mx-3">
+                        <label for="selectorDeporte">Deporte(*):</label>
+                        <select class="form-control" id="selectorDeporte" [ngModelOptions]="{standalone: true}" [(ngModel)]="deporteSeleccionado">
+                        <option [ngValue]="deporte" *ngFor="let deporte of listaDeportes">{{deporte.nombre}}</option>
+                    </select>
+                    </div>
+
+                    <div class="form-group col mx-3">
+                        <label for="inputCompeticion">Competición(*):</label>
+                        <input id="inputCompeticion" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.competicion">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col mx-3">
+                        <label for="inputFechaInicio">Fecha y hora de inicio(*):</label>
+                        <input id="inputFechaInicio" type="datetime-local" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.fechaInicio">
+                    </div>
+
+                    <div class="form-group col mx-3">
+                        <label for="inputFechaFin">Fecha y hora de finalización(*):</label>
+                        <input id="inputFechaFin" type="datetime-local" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.fechaFin">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col mx-3">
+                        <label for="inputDescripcion">Decripción:</label>
+                        <textarea id="inputDescripcion" cols="30" rows="10" class=form-control [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.descripcion"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col mx-3">
+                        <button class="btn btn-secondary" [routerLink]="['/TiposEvento']">Volver</button>
+                        <button class="btn btn-outline-success float-right" (click)="compruebaAccion()">{{mensajeBoton}}</button>
+                        <button [disabled]="estado==='creacion'" class="btn btn-outline-danger float-right mr-2" (click)="openModal(content)">Borrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Borrado de Tipo de Evento</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>¿Estas seguro que quieres borrar el tipo de evento?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Launch click')">Confirmar</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Cancel click')">Cancelar</button>
+    </div>
+</ng-template>
