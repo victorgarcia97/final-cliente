@@ -64,6 +64,7 @@ export class TiposApuestasDetailComponent implements OnInit {
       "multiplicador": undefined,
       "riesgo": undefined,
       "deporteId": undefined,
+      "deporte": undefined
     }
 
     this.getDeportes();

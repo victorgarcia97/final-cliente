@@ -61,22 +61,18 @@ export class TiposEventoDetailComponent implements OnInit {
   recargar(){
     this.tipoEvento = {
       "deporteId": undefined,
+      "deporte": undefined,
       "competicion": undefined,
       "fechaInicio":undefined,
       "fechaFin": undefined
     }
 
-    this.deporteSeleccionado = {
-      "id": undefined,
-      "nombre": undefined
-    }
     this.getDeportes();
   }
 
   getTipoEvento(id: number){
     this.tipoEventoService.getTipoEvento(id)
       .subscribe(response =>{
-        this.deporteSeleccionado = response.deporte;
         this.tipoEvento = response;
       });
   }
@@ -97,8 +93,6 @@ export class TiposEventoDetailComponent implements OnInit {
       return;
     }
 
-    this.tipoEvento.deporteId = this.deporteSeleccionado.id;
-
     this.tipoEventoService.postTipoEvento(this.tipoEvento)
       .subscribe(response => {
         this.recargar();
@@ -115,8 +109,6 @@ export class TiposEventoDetailComponent implements OnInit {
     if(!this.validarFechas()){
       this.toastr.error("La fecha de inicio no puede ser despues de la fecha fin");
     }
-
-    this.tipoEvento.deporteId = this.deporteSeleccionado.id;
 
     this.tipoEventoService.putTipoEvento(this.tipoEvento)
       .subscribe(response => {
@@ -146,7 +138,7 @@ export class TiposEventoDetailComponent implements OnInit {
 
 
   validar(): boolean {
-    if(this.deporteSeleccionado === undefined || this.deporteSeleccionado === null || this.tipoEvento.competicion === undefined || this.tipoEvento.competicion === ""
+    if(this.tipoEvento.competicion === undefined || this.tipoEvento.competicion === ""
       || this.tipoEvento.competicion === null || this.tipoEvento.fechaInicio === undefined || this.tipoEvento.fechaInicio === null || this.tipoEvento.fechaFin === undefined
       || this.tipoEvento.fechaFin === null){
         return false;

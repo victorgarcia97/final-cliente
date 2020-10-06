@@ -6,8 +6,8 @@
                 <div class="form-row">
                     <div class="form-group col mx-3">
                         <label for="selectorDeporte" class="text-white">Deporte(*):</label>
-                        <select class="form-control" id="selectorDeporte" [ngModelOptions]="{standalone: true}" [(ngModel)]="deporteSeleccionado">
-                        <option [ngValue]="deporte" *ngFor="let deporte of listaDeportes">{{deporte.nombre}}</option>
+                        <select class="form-control" id="selectorDeporte" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.deporteId">
+                        <option [ngValue]="deporte.id" *ngFor="let deporte of listaDeportes">{{deporte.nombre}}</option>
                     </select>
                     </div>
 
