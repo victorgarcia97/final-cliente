@@ -19,13 +19,13 @@
 
                 <div class="form-row">
                     <div class="form-group col mx-3">
-                        <label for="inputFechaInicio" class="text-white">Fecha y hora de inicio(*):</label>
-                        <input id="inputFechaInicio" type="datetime-local" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.fechaInicio">
+                        <label for="inputFechaInicio" class="text-white">Fecha de inicio(*):</label>
+                        <input id="inputFechaInicio" type="date" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.fechaInicio">
                     </div>
 
                     <div class="form-group col mx-3">
-                        <label for="inputFechaFin" class="text-white">Fecha y hora de finalización(*):</label>
-                        <input id="inputFechaFin" type="datetime-local" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.fechaFin">
+                        <label for="inputFechaFin" class="text-white">Fecha de finalización(*):</label>
+                        <input id="inputFechaFin" type="date" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoEvento.fechaFin">
                     </div>
                 </div>
 
@@ -38,9 +38,9 @@
 
                 <div class="row">
                     <div class="col mx-3">
-                        <button class="btn btn-secondary" [routerLink]="['/TiposEvento']">Volver</button>
-                        <button class="btn btn-outline-success float-right" (click)="compruebaAccion()">{{mensajeBoton}}</button>
-                        <button [disabled]="estado==='creacion'" class="btn btn-outline-danger float-right mr-2" (click)="openModal(content)">Borrar</button>
+                        <button id="btnVolver" class="btn btn-secondary" [routerLink]="['/TiposEvento']">Volver</button>
+                        <button id="btnCrearGuardar" class="btn btn-outline-success float-right" (click)="compruebaAccion()">{{mensajeBoton}}</button>
+                        <button id="btnBorrar" [disabled]="estado==='creacion'" class="btn btn-outline-danger float-right mr-2" (click)="openModal(content)">Borrar</button>
                     </div>
                 </div>
             </form>
@@ -59,7 +59,7 @@
         <p>¿Estas seguro que quieres borrar el tipo de evento?</p>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-success" (click)="modal.close('Launch click')">Confirmar</button>
+        <button id="btnConfirmarModal" type="button" class="btn btn-outline-success" (click)="modal.close('Launch click')">Confirmar</button>
         <button type="button" class="btn btn-outline-danger" (click)="modal.close('Cancel click')">Cancelar</button>
     </div>
 </ng-template>

@@ -13,11 +13,11 @@
                     <tr>
                         <th class="text-info">Deporte</th>
                         <th class="text-info">Competicion</th>
-                        <th class="text-info">Fecha y hora de inicio</th>
+                        <th class="text-info">Fecha de inicio</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let tipoEvento of listaTiposEvento" routerLink="{{tipoEvento.id}}/Editar">
+                    <tr id="tipoEventoRow" *ngFor="let tipoEvento of listaTiposEvento" routerLink="{{tipoEvento.id}}/Editar">
                         <td>{{tipoEvento.deporte.nombre}}</td>
                         <td>{{tipoEvento.competicion}}</td>
                         <td>{{tipoEvento.fechaInicio|date:'medium'}}</td>
