@@ -83,7 +83,6 @@ export class TiposApuestasDetailComponent implements OnInit {
         this.tipoApuesta = response;
         this.tituloPagina = "Edición de tipo de apuesta: "+ response.descripcion; 
       })
-
   }
 
   postTipoApuesta(){ 
