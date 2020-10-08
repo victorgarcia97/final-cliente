@@ -12,20 +12,26 @@
                 <thead class="thead-dark text-primary">
                     <tr>
                         <th class="text-info font-weight-bold">Descripción</th>
+                        <th class="text-info font-weight-bold">Deporte</th>
                         <th class="text-info font-weight-bold">Riesgo</th>
                         <th class="text-info font-weight-bold">Multiplicador</th>
-                        <th class="text-info font-weight-bold">Deporte</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let tipoApuesta of listaTiposApuesta" routerLink="{{tipoApuesta.id}}/Editar">
                         <td>{{tipoApuesta.descripcion}}</td>
+                        <td>{{tipoApuesta.deporte.nombre}}</td>
                         <td>{{tipoApuesta.riesgo}}</td>
                         <td>{{tipoApuesta.multiplicador}}</td>
-                        <td>{{tipoApuesta.deporte.nombre}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<ng-template #listaTiposApuestasEmpty>
+    <div class="col-sm-12 col-md-12 text-white">
+        <h1 class="center">No existen tipos de apuesta para mostrar, añada alguno.</h1>
+    </div>
+</ng-template>

@@ -7,12 +7,12 @@
     </div>
 
     <div class="row">
-        <div class="col table-responsive">
+        <div class="col table-responsive" *ngIf="listaTiposEvento.length > 0; else listaTiposEventosEmpty">
             <table class="table table-hover table-dark border border-primary">
                 <thead class="thead-dark text-primary">
                     <tr>
                         <th class="text-info">Deporte</th>
-                        <th class="text-info">Competicion</th>
+                        <th class="text-info">Competición</th>
                         <th class="text-info">Fecha de inicio</th>
                     </tr>
                 </thead>
@@ -20,10 +20,16 @@
                     <tr id="tipoEventoRow" *ngFor="let tipoEvento of listaTiposEvento" routerLink="{{tipoEvento.id}}/Editar">
                         <td>{{tipoEvento.deporte.nombre}}</td>
                         <td>{{tipoEvento.competicion}}</td>
-                        <td>{{tipoEvento.fechaInicio|date:'medium'}}</td>
+                        <td>{{tipoEvento.fechaInicio|date:'longDate'}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<ng-template #listaTiposEventosEmpty>
+    <div class="col-sm-12 col-md-12 text-white">
+        <h1 class="center">No existen tipos de evento para mostrar, añada alguno.</h1>
+    </div>
+</ng-template>

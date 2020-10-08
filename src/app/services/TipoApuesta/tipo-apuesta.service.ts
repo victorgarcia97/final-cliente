@@ -17,22 +17,27 @@ export class TipoApuestaService {
   constructor(private http: HttpClient) { }
 
   getTiposApuesta(): Observable<TipoApuesta[]> {
-    return this.http.get<TipoApuesta[]>("http://localhost:5000/api/TiposApuestas")
+    return this.http.get<TipoApuesta[]>("http://localhost:5000/api/TiposApuesta")
   }
 
   getTipoApuesta(id: number): Observable<TipoApuesta>{
-    return this.http.get<TipoApuesta>("http://localhost:5000/api/TiposApuestas/"+id);
+    return this.http.get<TipoApuesta>("http://localhost:5000/api/TiposApuesta/"+id);
   }
 
   postTipoApuesta(tipoApuesta: TipoApuesta): Observable<TipoApuesta> {
-    return this.http.post<TipoApuesta>("http://localhost:5000/api/TiposApuestas", tipoApuesta, this.httpOptions);
+    return this.http.post<TipoApuesta>("http://localhost:5000/api/TiposApuesta", tipoApuesta, this.httpOptions);
   }
 
   deleteTipoApuesta(id: number) :Observable<TipoApuesta> {
-    return this.http.delete<TipoApuesta>("http://localhost:5000/api/TiposApuestas/"+id,this.httpOptions);
+    return this.http.delete<TipoApuesta>("http://localhost:5000/api/TiposApuesta/"+id,this.httpOptions);
   }
 
   putTipoApuesta(tipoApuesta: TipoApuesta): Observable<TipoApuesta> {
-    return this.http.put<TipoApuesta>("http://localhost:5000/api/TiposApuestas/"+tipoApuesta.id,tipoApuesta,this.httpOptions);
+    return this.http.put<TipoApuesta>("http://localhost:5000/api/TiposApuesta/"+tipoApuesta.id,tipoApuesta,this.httpOptions);
+  }
+
+  getTiposApuestaPorDeporte(eventoId: number):Observable<TipoApuesta[]> {
+    return this.http.get<TipoApuesta[]>("http://localhost:5000/api/TiposApuesta/PorDeporte/"+eventoId)
+
   }
 }

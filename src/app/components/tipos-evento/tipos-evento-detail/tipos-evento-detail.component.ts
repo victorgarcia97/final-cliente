@@ -14,6 +14,8 @@ import { TipoEventoService } from 'src/app/services/TipoEvento/tipo-evento.servi
 })
 export class TiposEventoDetailComponent implements OnInit {
 
+  tituloPagina: string;
+
   estado: string;
 
   tipoEvento: TipoEvento
@@ -45,6 +47,7 @@ export class TiposEventoDetailComponent implements OnInit {
     }
 
     if(this.estado === 'creacion'){
+      this.tituloPagina = "Creación de tipo de evento";
       this.recargar();
       this.mensajeBoton = "Añadir";
     }
@@ -74,6 +77,7 @@ export class TiposEventoDetailComponent implements OnInit {
     this.tipoEventoService.getTipoEvento(id)
       .subscribe(response =>{
         this.tipoEvento = response;
+        this.tituloPagina = "Edición del tipo de evento: "+ response.deporte.nombre + ", "+ response.competicion+"";
       });
   }
 
@@ -89,31 +93,31 @@ export class TiposEventoDetailComponent implements OnInit {
     }
 
     if(!this.validarFechas()){
-      this.toastr.error("La fecha de inicio no puede ser despues de la fecha fin");
+      this.toastr.error("La fecha de inicio no puede ser después de la fecha fin");
       return;
     }
 
     this.tipoEventoService.postTipoEvento(this.tipoEvento)
       .subscribe(response => {
         this.recargar();
-        this.toastr.success("Se ha creado el tipo de evento correctamente");
+        this.toastr.success("Se ha creado el tipo de evento:"+ response.deporte.nombre + " " + response.competicion +" correctamente");
     });
   }
 
   putTipoEvento(){
     if(!this.validar()){
-      this.toastr.error("No se puede modificar si no estan todos los campos obligatorios rellenados");
+      this.toastr.error("No se puede modificar si no están todos los campos obligatorios rellenados");
       return;
     }
 
     if(!this.validarFechas()){
-      this.toastr.error("La fecha de inicio no puede ser despues de la fecha fin");
+      this.toastr.error("La fecha de inicio no puede ser después de la fecha fin");
     }
 
     this.tipoEventoService.putTipoEvento(this.tipoEvento)
       .subscribe(response => {
-        this.getTipoEvento(this.tipoEvento.id);
-        this.toastr.info("El tipo de evento se ha modificado correctamente");
+        this.tipoEvento = response;
+        this.toastr.info("El tipo de evento: "+ response.deporte.nombre + " " + response.competicion +" se ha modificado correctamente");
       });
   }
 
@@ -121,7 +125,7 @@ export class TiposEventoDetailComponent implements OnInit {
     this.tipoEventoService.deleteTipoEvento(this.tipoEvento.id)
       .subscribe(response => {
         this.router.navigate(['TiposEvento']);
-        this.toastr.success("Se ha borrado un tipo de evento");
+        this.toastr.success("Se ha borrado el tipo de evento: " +response.deporte.nombre + " " + response.competicion);
 
       });
   }

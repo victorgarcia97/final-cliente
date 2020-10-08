@@ -14,13 +14,13 @@ import { TipoApuestaService } from 'src/app/services/TipoApuesta/tipo-apuesta.se
 })
 export class TiposApuestasDetailComponent implements OnInit {
 
+  tituloPagina: string;
+
   listaRiesgo: string[] = ["Alto","Medio","Bajo"];
 
   listaDeportes: Deporte[];
 
   tipoApuesta: TipoApuesta;
-
-  deporteSeleccionado: Deporte;
 
   estado: string;
   closeResult: string;
@@ -45,18 +45,20 @@ export class TiposApuestasDetailComponent implements OnInit {
     }
 
     if(this.estado === 'creacion'){
+      this.tituloPagina = 'Creación de tipo de apuesta';
       this.recargar();
       this.mensajeBoton = "Añadir";
     }
 
     if(this.estado === 'edicion'){
+      
       this.mensajeBoton = "Guardar";
       this.recargar();
       let idURL = +this.route.snapshot.paramMap.get('id');
       this.getTipoApuesta(idURL);
+
     }
   }
-
 
   recargar(){
     this.tipoApuesta = {
@@ -79,6 +81,7 @@ export class TiposApuestasDetailComponent implements OnInit {
     this.tipoApuestaService.getTipoApuesta(id)
       .subscribe(response => {
         this.tipoApuesta = response;
+        this.tituloPagina = "Edición de tipo de apuesta: "+ response.descripcion; 
       })
 
   }
@@ -92,7 +95,7 @@ export class TiposApuestasDetailComponent implements OnInit {
     this.tipoApuestaService.postTipoApuesta(this.tipoApuesta)
       .subscribe(response => {
         this.recargar();
-        this.toastr.success("Se ha creado un tipo de apuesta correctamente");
+        this.toastr.success("Se ha creado el tipo de apuesta: "+ response.descripcion +"correctamente");
       })
   }
 
@@ -102,12 +105,10 @@ export class TiposApuestasDetailComponent implements OnInit {
       return;
     }
 
-    this.tipoApuesta.deporteId = this.deporteSeleccionado.id;
-
     this.tipoApuestaService.putTipoApuesta(this.tipoApuesta)
       .subscribe(response => {
         this.getTipoApuesta(this.tipoApuesta.id);
-        this.toastr.success("Se ha modificado el tipo de apuesta");
+        this.toastr.success("Se ha modificado el tipo de apuesta: "+ response.descripcion);
       })
   
   }
@@ -116,7 +117,7 @@ export class TiposApuestasDetailComponent implements OnInit {
     this.tipoApuestaService.deleteTipoApuesta(this.tipoApuesta.id)
       .subscribe(response => {
         this.router.navigate(['TiposApuesta']);
-        this.toastr.success("Se ha borrado un tipo de apuesta");
+        this.toastr.success("Se ha borrado el tipo de apuesta: " + response.descripcion);
       })
   }
 

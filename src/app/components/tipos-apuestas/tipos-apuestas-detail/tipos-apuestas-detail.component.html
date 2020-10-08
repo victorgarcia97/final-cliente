@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="my-3 text-white">Creación de tipo de apuesta</h1>
+            <h1 class="my-3 text-white">{{tituloPagina}}</h1>
             <form class="border border-primary p-5 bg-dark">
                 <div class="form-row">
 
@@ -45,7 +45,7 @@
 
                 <div class="row">
                     <div class="col mx-3">
-                        <button class="btn btn-secondary" [routerLink]="['/TiposApuesta']">Volver</button>
+                        <button class="btn btn-secondary" [routerLink]="['/TiposApuesta']">Cancelar</button>
                         <button class="btn btn-outline-success float-right" (click)="compruebaAccion()">{{mensajeBoton}}</button>
                         <button [disabled]="estado==='creacion'" class="btn btn-outline-danger float-right mr-2" (click)="openModal(content)">Borrar</button>
                     </div>
@@ -57,13 +57,13 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Borrado de Tipo de Apuesta</h4>
+        <h4 class="modal-title" id="modal-basic-title">Borrado de tipo de apuesta</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <p>¿Estas seguro que quieres borrar el tipo de apuesta?</p>
+        <p>¿Está seguro de que quiere borrar el tipo de apuesta?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-success" (click)="modal.close('Launch click')">Confirmar</button>
