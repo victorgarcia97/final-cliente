@@ -116,6 +116,22 @@ export class EventoDetailComponent implements OnInit {
   }
 
   postEvento(){
+
+    if(!this.validar()){
+      this.toastr.error("Rellene todos los campos obligatorios, por favor.");
+      return;
+    }
+
+    if(this.evento.codigo.length >= 15){
+      this.toastr.error("El codigo no puede tener mas de 15 caracteres.");
+      return;
+    }
+
+    if(this.listaTiposApuestaAVincular.length === 0){
+      this.toastr.error("Se debe asignar al menos un tipo de apuesta");
+      return;
+    }
+
     this.evento.tiposApuesta = this.listaTiposApuestaAVincular;
     
     this.eventosService.postEvento(this.evento)
@@ -126,6 +142,22 @@ export class EventoDetailComponent implements OnInit {
   }
 
   putEvento(){
+    
+    if(!this.validar()){
+      this.toastr.error("Rellene todos los campos obligatorios, por favor.");
+      return;
+    }
+
+    if(this.evento.codigo.length >= 15){
+      this.toastr.error("El codigo no puede tener mas de 15 caracteres.");
+      return;
+    }
+
+    if(this.listaTiposApuestaAVincular.length === 0){
+      this.toastr.error("Se debe asignar al menos un tipo de apuesta");
+      return;
+    }
+
     this.evento.tiposApuesta = this.listaTiposApuestaAVincular;
     
     this.eventosService.putEvento(this.evento)
@@ -162,13 +194,13 @@ export class EventoDetailComponent implements OnInit {
   }
 
   validar(){
+    if(this.evento.codigo === undefined || this.evento.codigo === "" ||
+       this.evento.nombre === undefined || this.evento.nombre === "" || 
+       this.evento.tipoEventoId === undefined ){
+         return false;
+       }
 
-    //mirar nulos 
-
-    //mirar codigo no mayor que 15
-
-    //mirar que por lo menos un tipo de apuesta
-
+       return true;
   }
 
 

@@ -163,6 +163,10 @@ export class TiposEventoDetailComponent implements OnInit {
     return true;
   }
 
+  inputFechaCambiado(evento) {​​​​​
+    return new Date(evento);
+  }​​​​​
+
   openModal(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`

@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col table-responsive ">
-            <table class="table table-hover border table-dark border-primary">
+            <table class="table table-hover border table-dark border-primary" *ngIf="listaTiposApuesta.length > 0; else listaTiposApuestaEmpty">
                 <thead class="thead-dark text-primary">
                     <tr>
                         <th class="text-info font-weight-bold">Descripción</th>
@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<ng-template #listaTiposApuestasEmpty>
+<ng-template #listaTiposApuestaEmpty>
     <div class="col-sm-12 col-md-12 text-white">
         <h1 class="center">No existen tipos de apuesta para mostrar, añada alguno.</h1>
     </div>
