@@ -11,6 +11,8 @@ import { TiposEventoComponent } from './components/tipos-evento/tipos-evento.com
 import { TiposApuestaComponent } from './components/tipos-apuestas/tipos-apuestas.component';
 import { TiposEventoDetailComponent } from './components/tipos-evento/tipos-evento-detail/tipos-evento-detail.component';
 import { TiposApuestasDetailComponent } from './components/tipos-apuestas/tipos-apuestas-detail/tipos-apuestas-detail.component';
+import { EventoComponent } from './components/evento/evento.component';
+import { EventoDetailComponent } from './components/evento/evento-detail/evento-detail.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { TiposApuestasDetailComponent } from './components/tipos-apuestas/tipos-
     TiposEventoComponent,
     TiposApuestaComponent,
     TiposEventoDetailComponent,
-    TiposApuestasDetailComponent
+    TiposApuestasDetailComponent,
+    EventoComponent,
+    EventoDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -17,22 +17,22 @@ export class TipoEventoService {
   constructor(private http: HttpClient) { }
 
   getTiposEventos(): Observable<TipoEvento[]> {
-    return this.http.get<TipoEvento[]>("http://localhost:5000/api/TipoEventos")
+    return this.http.get<TipoEvento[]>("http://localhost:5000/api/TiposEvento")
   }
 
   getTipoEvento(id: number): Observable<TipoEvento>{
-    return this.http.get<TipoEvento>("http://localhost:5000/api/TipoEventos/"+id);
+    return this.http.get<TipoEvento>("http://localhost:5000/api/TiposEvento/"+id);
   }
 
   postTipoEvento(tipoEvento: TipoEvento): Observable<TipoEvento> {
-    return this.http.post<TipoEvento>("http://localhost:5000/api/TipoEventos", tipoEvento, this.httpOptions);
+    return this.http.post<TipoEvento>("http://localhost:5000/api/TiposEvento", tipoEvento, this.httpOptions);
   }
 
   deleteTipoEvento(id: number) :Observable<TipoEvento> {
-    return this.http.delete<TipoEvento>("http://localhost:5000/api/TipoEventos/"+id,this.httpOptions);
+    return this.http.delete<TipoEvento>("http://localhost:5000/api/TiposEvento/"+id,this.httpOptions);
   }
 
   putTipoEvento(tipoEvento: TipoEvento): Observable<TipoEvento> {
-    return this.http.put<TipoEvento>("http://localhost:5000/api/TipoEventos/"+tipoEvento.id,tipoEvento,this.httpOptions);
+    return this.http.put<TipoEvento>("http://localhost:5000/api/TiposEvento/"+tipoEvento.id,tipoEvento,this.httpOptions);
   }
 }

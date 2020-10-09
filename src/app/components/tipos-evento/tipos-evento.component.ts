@@ -14,6 +14,7 @@ export class TiposEventoComponent implements OnInit {
   constructor(private tipoEventoService: TipoEventoService) { }
 
   ngOnInit(): void {
+    this.listaTiposEvento = [];
     this.getTiposEventos();
 
   }

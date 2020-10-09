@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="my-3 text-white">{{tituloPagina}}</h1>
+            <form class="border border-primary p-5 bg-dark">
+                <div class="form-row">
+
+                    <div class="form-group col mx-5">
+                        <label for="inputDescripcion" class="text-white">Código(*):</label>
+                        <input [disabled]="evento.activo === true" id="inputDescripcion" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="evento.codigo">
+                    </div>
+
+                    <div class="form-group col mx-5">
+                        <label for="inputDescripcion" class="text-white">Nombre(*):</label>
+                        <input [disabled]="evento.activo === true" id="inputDescripcion" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="evento.nombre">
+                    </div>
+
+                    <div class="form-group col mx-5">
+                        <label for="checkActivo" class="text-white">Activo:</label>
+                        <input id="checkActivo" class="form-check" type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="evento.activo" value="true">
+                    </div>
+
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group col mx-5">
+                        <label for="selectorTipoEvento" class="text-white">Tipo de evento(*):</label>
+                        <select [disabled]="estado ==='edicion'" class="form-control" id="selectorTipoEvento" (change)="getListaTiposApuestaPorDeporte()" [ngModelOptions]="{standalone: true}" [(ngModel)]="evento.tipoEventoId">
+                            <option [ngValue]="tipoEvento.id" *ngFor="let tipoEvento of listaTiposEvento">{{tipoEvento.deporte.nombre}},{{tipoEvento.competicion}}</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group col mx-5">
+                        <label for="selectorTipoApuesta" class="text-white">Tipos de apuesta(*):</label>
+                        <div *ngIf="listaTiposApuestaPorDeporte.length >0">
+                            <select [disabled]="evento.activo === true" class="form-control" id="selectorTipoApuesta" (change)=comprubaTipoApuestaAVincular() [ngModelOptions]="{standalone: true}" [(ngModel)]="tipoApuestaSeleccionada">
+                                <option [ngValue]="tipoApuesta" *ngFor="let tipoApuesta of listaTiposApuestaPorDeporte">{{tipoApuesta.descripcion}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="listaTiposApuestaPorDeporte.length <=0">
+                            <p class="alert alert-warning">No hay tipos de apuesta asociadas a este deporte</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col mx-5">
+                        <button class="btn btn-secondary" [routerLink]="['/Eventos']">Cancelar</button>
+                        <button class="btn btn-outline-success float-right" (click)="compruebaAccion()">{{mensajeBoton}}</button>
+                        <button [disabled]="estado==='creacion' || evento.activo" class="btn btn-outline-danger float-right mr-2" (click)="openModal(content)">Borrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5" *ngIf="listaTiposApuestaAVincular.length > 0">
+        <div class="col table-responsive">
+            <table class="table table-striped table-dark border border-primary">
+                <thead class="thead-dark text-primary">
+                    <tr>
+                        <th class="text-info">Descripción</th>
+                        <th class="text-info">Riesgo</th>
+                        <th class="text-info">Multiplicador</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tipoApuesta of listaTiposApuestaAVincular">
+                        <td>{{tipoApuesta.descripcion}}</td>
+                        <td>{{tipoApuesta.riesgo}}</td>
+                        <td>{{tipoApuesta.multiplicador}}</td>
+                        <td><button [disabled]="listaTiposApuestaAVincular.length === 1 || evento.activo" class="btn btn-danger" (click)="quitarListaTiposApuestaAVincular(tipoApuesta)">Quitar de la lista</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Borrado de evento</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>¿Está seguro de que quiere borrar el evento?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Launch click')">Confirmar</button>
+        <button type="button" class="btn btn-outline-danger float-right" (click)="modal.close('Cancel click')">Cancelar</button>
+    </div>
+</ng-template>

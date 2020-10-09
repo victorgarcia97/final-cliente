@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row my-5">
+        <div class="col">
+            <h1 id="tituloEventos" class="text-white">Listado de eventos</h1>
+            <button id="btnCrearEvento" type="button" class="btn btn-success float-right" [routerLink]="['/Eventos/CrearEvento']">Añadir evento</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col table-responsive" *ngIf="listaEventos.length > 0; else listaEventosEmpty">
+            <table class="table table-hover table-dark border border-primary">
+                <thead class="thead-dark text-primary">
+                    <tr>
+                        <th class="text-info">Código</th>
+                        <th class="text-info">Nombre</th>
+                        <th class="text-info">Deporte y competición</th>
+                        <th class="text-info">Descripción apuesta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="eventoRow" *ngFor="let evento of listaEventos" routerLink="{{evento.id}}/Editar">
+                        <td>{{evento.codigo}}</td>
+                        <td>{{evento.nombre}}</td>
+                        <td>{{evento.tipoEvento.deporte.nombre}}, {{evento.tipoEvento.competicion}}</td>
+                        <td>
+                            <div *ngFor="let tipoApuesta of evento.tiposApuesta">
+                                {{tipoApuesta.descripcion}}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #listaEventosEmpty>
+    <div class="col-sm-12 col-md-12 text-white">
+        <h1 class="center">No existen eventos para mostrar, añada alguno.</h1>
+    </div>
+</ng-template>
